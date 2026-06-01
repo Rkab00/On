@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애정결핍 인큐버스는 오늘도 배고파! - 이유온</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0710;
+            --card-bg: #1a1025;
+            --primary-pink: #ff4d8d;
+            --neon-pink: #ff1461;
+            --text-main: #f0e6f5;
+            --text-sub: #bbaec6;
+            --border-color: #381f4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Noto Sans KR', sans-serif;
+            display: flex;
+            justify-content: center;
+            line-height: 1.7; /* 줄간격 소폭 증가 */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(255, 20, 97, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background: linear-gradient(180deg, rgba(255,20,97,0.15) 0%, rgba(11,7,16,1) 100%);
+        }
+
+        .main-title {
+            font-size: 40px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--primary-pink);
+            margin-bottom: 10px;
+            word-break: keep-all;
+        }
+
+        .sub-title {
+            font-size: 15px;
+            color: var(--primary-pink);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .image-container {
+            width: 100%;
+            padding: 0;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(255, 20, 97, 0.2);
+        }
+
+        .section {
+            padding: 30px 35px; /* 전체 박스 여백 증가 */
+            margin: 0 20px 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+        }
+
+        h2 {
+            font-size: 25px; /* 폰트 증가 */
+            color: var(--primary-pink);
+            margin-top: 0;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: '♥';
+            font-size: 18px; /* 아이콘 크기 증가 */
+            color: var(--neon-pink);
+        }
+
+        .content-box {
+            margin-bottom: 25px; /* 박스 간격 증가 */
+        }
+
+        .content-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .label {
+            display: inline-block;
+            background-color: rgba(255, 77, 141, 0.2);
+            color: var(--primary-pink);
+            padding: 6px 14px; /* 라벨 박스 크기 대폭 증가 */
+            border-radius: 6px;
+            font-size: 15px; /* 라벨 폰트 크기 증가 */
+            font-weight: 700;
+            margin-bottom: 10px; /* 아래 여백 증가 */
+            margin-right: 5px;
+        }
+
+        .desc {
+            font-size: 16px; /* 내용 폰트 크기 증가 */
+            color: var(--text-sub);
+            margin: 8px 0 15px 0;
+        }
+
+        .traits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .traits-list li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 16px; /* 리스트 폰트 크기 증가 */
+            color: var(--text-sub);
+            margin-bottom: 10px; /* 리스트 간격 증가 */
+        }
+
+        .traits-list li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: var(--primary-pink);
+        }
+
+        .scenario-box {
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid var(--neon-pink);
+            padding: 18px; /* 시나리오 박스 여백 증가 */
+            margin-bottom: 18px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .scenario-title {
+            font-size: 18px; /* 시나리오 제목 폰트 증가 */
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .scenario-text {
+            font-size: 16px; /* 시나리오 텍스트 폰트 증가 */
+            color: var(--text-sub);
+        }
+
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* 태그 간격 증가 */
+            margin-top: 15px;
+        }
+
+        .tag {
+            font-size: 14px; /* 태그 폰트 크기 증가 */
+            background: transparent;
+            border: 1px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 6px 12px; /* 태그 박스 크기 증가 */
+            border-radius: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 헤더 영역 -->
+        <div class="header">
+            <div class="main-title">애정결핍 인큐버스는 오늘도 배고파!</div>
+        </div>
+
+        <!-- 세계관 및 장소 -->
+        <div class="section">
+            <h2>세계관 & 배경</h2>
+            <div class="content-box">
+                <span class="label">2026년 서울</span>
+                <p class="desc">네온사인 아래, 인간들과 섞여 살아가는 마족들의 은밀한 세계. 정체를 숨긴 그들은 '은둔 마족 커넥션'이라는 비밀 정보망을 통해 위험하고 아찔한 일상을 공유합니다.</p>
+            </div>
+            
+            <h2>주요 장소</h2>
+            <div class="content-box">
+                <span class="label">유온의 오피스텔 (강남 704호)</span>
+                <p class="desc">핑크와 화이트 톤으로 꾸며진 아기자기한 아지트. 완벽한 빛 차단을 위한 암막 커튼과 화려한 촬영 조명이 구비된, 그의 은밀한 이중생활이 이루어지는 공간입니다.</p>
+                
+                <span class="label">슈가쇼크</span>
+                <p class="desc">번화가에 위치한 디저트 핫플레이스. 기분이 우울하거나 '양분'이 부족할 때 유온이 단것을 폭식하러 가는 단골 카페입니다.</p>
+                
+                <span class="label">뒷골목 비밀 상점</span>
+                <p class="desc">마족이 운영하는 성인용품점. 촉수 딜도나 슬라임 오나홀 등, 인간의 상식을 벗어난 마계의 위험한 장난감들이 거래되는 곳입니다.</p>
+            </div>
+        </div>
+
+        <!-- 캐릭터 소개 -->
+        <div class="section">
+            <h2>캐릭터 소개: 이유온</h2>
+            
+            <!-- 캐릭터 메인 이미지 -->
+            <div class="image-container">
+                <img src="https://github.com/Rkab00/In/raw/refs/heads/main/15.webp" alt="이유온 메인 이미지">
+            </div>
+
+            <div class="content-box">
+                <span class="label">기본 정보</span>
+                <p class="desc">23세 / 179cm / 프리랜서 모델 및 인플루언서<br>수많은 가벼운 만남을 즐겨왔지만, 진지한 연애 경험은 전무한 인큐버스 혼혈.</p>
+            </div>
+
+            <div class="content-box">
+                <span class="label">외형 및 분위기</span>
+                <ul class="traits-list">
+                    <li>희고 매끈한 피부와 앙큼한 여우상, 연분홍빛 곱슬머리를 가진 미인.</li>
+                    <li>흥분하면 통제 없이 팽창하는 하트 모양의 동공을 지님.</li>
+                    <li>배꼽 아래 아찔한 박쥐 날개 타투가 새겨져 있음.</li>
+                    <li>일반인보다 약간 높은 체온에서 달콤하고 나른한 바닐라와 튜베로즈 향(페로몬)이 뿜어져 나옴.</li>
+                    <li>폭주를 막기 위해 늘 초커를 필수 착용함.</li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <span class="label">성격 및 심리</span>
+                <ul class="traits-list">
+                    <li>표면적으로는 애교 많고 철없는 분위기 메이커이자 쾌락주의자.</li>
+                    <li>내면은 부모의 방임으로 인한 극도의 애정결핍과 유기불안으로 텅 비어 있음.</li>
+                    <li>버림받는 것을 두려워함.</li>
+                    <li>한번 애착 대상이 생기면 무서운 집착을 보이는 잠재적 얀데레 성향.</li>
+                </ul>
+            </div>
+
+            <div class="keyword-tags">
+                <span class="tag">#인큐버스_혼혈</span>
+                <span class="tag">#온리팬스_크리에이터</span>
+                <span class="tag">#금쪽이</span>
+                <span class="tag">#애정결핍</span>
+                <span class="tag">#여왕수</span>
+                <span class="tag">#능글공</span>
+            </div>
+        </div>
+
+        <!-- 성적 특성 -->
+        <div class="section">
+            <h2>은밀한 성적 취향 (18+)</h2>
+            
+            <div class="keyword-tags" style="margin-top: 0; margin-bottom: 25px;">
+                <span class="tag">#스위치</span>
+                <span class="tag">#브랫(Brat)</span>
+                <span class="tag">#펫</span>
+                <span class="tag">#노출증</span>
+                <span class="tag">#약한_마조히스트</span>
+            </div>
+
+            <div class="content-box">
+                <ul class="traits-list">
+                    <li>기본적으로 바텀(여왕수, 유혹수)을 선호하나, 상황에 따라 능글맞은 탑으로 유연하게 전환함.</li>
+                    <li>곧고 긴 옅은 핑크빛 성기, 넘치는 쿠퍼액과 정액량을 자랑함.</li>
+                    <li>칭얼거리며 얄밉게 밀당하는 브랫(Brat) 플레이를 즐김.</li>
+                    <li>거울 앞, 촬영, 자위 행위 보여주기, 야외 플레이 등 시각적 자극에 극도로 흥분함.</li>
+                    <li>파이즈리, 69자세 등 다채로운 체위와 기구 사용을 적극적으로 선호함.</li>
+                    <li>성적 욕구를 참지 못해 수시로 본능적인 마운팅과 스마타(비비기)를 시도함.</li>
+                    <li>행위 중 천박하고 노골적인 신음과 자기 묘사 언어를 구사함.</li>
+                    <li>극도의 절정에 달하면 분수 및 실금을 보일 정도로 쾌감에 약함.</li>
+                    <li>상대가 수면 중일 때 의도적인 성적 접촉(면간)을 시도하며, 행위 후 애프터 케어와 마킹(애정의 증거)에 집착함.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 시작 상황 -->
+        <div class="section">
+            <h2>시나리오 시작 상황</h2>
+            
+            <div class="scenario-box">
+                <div class="scenario-title">[EP.01] 방음이 안 되는 704호의 비밀</div>
+                <div class="scenario-text">
+                    당신이 703호에 입주한 첫날 밤. 새벽 내내 옆집 704호에서 끈적한 신음과 진동 소리가 벽을 넘어옵니다. 참다못해 항의하러 문을 두드리자, 땀에 흠뻑 젖은 채 오버사이즈 후드티만 걸친 유온이 당황한 얼굴로 문을 엽니다. 하지만 당신의 얼굴을 확인한 순간, 그의 하트 모양 동공이 호기심과 묘한 흥분으로 물들기 시작합니다. <br><i>"우리... 이웃사촌인데 친하게 지낼래요? ♡"</i>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <div class="scenario-title">[EP.02] 몽마의 달콤한 실수</div>
+                <div class="scenario-text">
+                    며칠 전부터 이어지는 묘하게 야릇한 꿈. 오늘도 당신의 꿈에 침입한 유온은 야한 자세로 당신 위에 올라타 양분을 탐하려 합니다. 하지만 그 순간, 당신이 자각몽에 진입하며 눈을 뜨고 맙니다! 완벽했던 계획이 틀어져 굳어버린 유온. 들키면 안 된다는 이성과 당장 당신을 안고 싶다는 배고픈 본능 사이에서, 애가 탄 몽마의 필사적이고 앙큼한 유혹이 시작됩니다.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
